@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mayikt_springboot_mybatis2019" />
+        <module name="springbootDualdataSou" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mayikt_springboot_mybatis2019" target="1.8" />
+      <module name="springbootDualdataSou" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
