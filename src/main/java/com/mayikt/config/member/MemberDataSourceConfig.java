@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -63,22 +65,14 @@ public class MemberDataSourceConfig {
      * @throws Exception
      */
     @Bean(name = "memberSqlSessionFactory")
+    @Primary
     public SqlSessionFactory memberSqlSessionFactory(@Qualifier("memberDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+
         return sqlSessionFactoryBean.getObject();
     }
-
-//    /**
-//     * 创建会员管理器
-//     *
-//     * @param dataSource
-//     * @return
-//     */
-//    @Bean(name = "memberTransactionManager")
-//    public DataSourceTransactionManager memberTransactionManager(@Qualifier("memberDataSource") DataSource dataSource) {
-//        return new DataSourceTransactionManager(dataSource);
-//    }
 
     /**
      * 创建订单sqlSesion模版
