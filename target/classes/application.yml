@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    ###会员数据库
+    member:
+      url: jdbc:mysql://localhost:3306/user
+      username: root
+      password: root
+      borrowConnectionTimeout: 30
+      loginTimeout: 30
+      maintenanceInterval: 60
+      maxIdleTime: 60
+      maxLifetime: 20000
+      maxPoolSize: 25
+      minPoolSize: 3
+      uniqueResourceName: orderDatasource
+    ###订单数据库
+    order:
+      url: jdbc:mysql://localhost:3306/order
+      username: root
+      password: root
+      borrowConnectionTimeout: 30
+      loginTimeout: 30
+      maintenanceInterval: 60
+      maxIdleTime: 60
+      maxLifetime: 20000
+      maxPoolSize: 25
+      minPoolSize: 3
+      uniqueResourceName: memberDatasource
+
+mybatis:
+     #配置dao接口与sql语句映射的xml文件的类路径地址，**注意不需要加classpath**
+   mapper-locations: classpath:mapper/*.xml
